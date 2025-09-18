@@ -23,7 +23,7 @@ stages:
             displayName: Build an image
             inputs:
               containerRegistry: 'dockerhub'
-              repository: 'dockerhub/currency-exchange-devops'
+              repository: 'dockerhub/currency_exchange_devops'
               command: 'buildAndPush'
               Dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
               tags: '$(tag)'
