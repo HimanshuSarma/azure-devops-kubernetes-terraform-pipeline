@@ -10,6 +10,9 @@ steps:
 - task: TerraformInstaller@1
   inputs:
     terraformVersion: 'latest'
+  
+- bash: sudo apt update
+- bash: sudo apt install unzip
 - task: TerraformTask@5
   inputs:
     provider: 'aws'
