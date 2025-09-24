@@ -176,3 +176,19 @@ resource "aws_eks_node_group" "main" {
     aws_iam_role_policy_attachment.node_policy
   ]
 }
+
+resource "kubernetes_cluster_role_binding" "example" {
+  metadata {
+    name = "fabric8-rbac"
+  }
+  role_ref {
+    api_group = "rbac.authorization.k8s.io"
+    kind      = "ClusterRole"
+    name      = "cluster-admin"
+  }
+  subject {
+    kind      = "ServiceAccount"
+    name      = "default"
+    namespace = "default"
+  }
+}
