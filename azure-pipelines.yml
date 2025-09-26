@@ -9,7 +9,7 @@ resources:
 - repo: self
 
 variables:
-  tag: 18
+  tag: $(Build.BuildId)
 
 stages:
 - stage: Build
@@ -20,13 +20,13 @@ stages:
     pool:
       name: self-hosted-runner
     steps:
-    # - task: Docker@2
-    #   displayName: Build an image
-    #   inputs:
-    #     command: build
-    #     dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
-    #     tags: |
-    #       $(tag)
+    - task: Docker@2
+      displayName: Build and push the latest docker image
+      inputs:
+        containerRegistry: 'dockerhub'
+        repository: 'himanshusarma123/currency_exchange_devops'
+        command: 'buildAndPush'
+        Dockerfile: '**/Dockerfile'
     - task: CopyFiles@2
       inputs:
         SourceFolder: '$(System.DefaultWorkingDirectory)'
